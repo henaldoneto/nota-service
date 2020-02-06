@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: nota_service
+      POSTGRES_PASSWORD: nota_service
+      POSTGRES_DB: nota_service
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nota_service"]
+      interval: 2s
+      timeout: 3s
+      retries: 30

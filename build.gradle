@@ -1,0 +1,64 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.arquivei'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	springCloudVersion = "Hoxton.SR1"
+	cucumberVersion = "4.3.1"
+	hibernateTypesVersion = "2.5.1"
+	springfoxVersion = "2.9.2"
+	logstashEncoderVersion = "5.3"
+
+}
+
+dependencies {
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
+	compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.11.1'
+
+	implementation "com.vladmihalcea:hibernate-types-52:$hibernateTypesVersion"
+	implementation "io.springfox:springfox-swagger2:$springfoxVersion"
+	implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"
+	implementation "io.springfox:springfox-bean-validators:$springfoxVersion"
+	implementation "net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion"
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.liquibase:liquibase-core'
+//	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
+//	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation "org.springframework.cloud:spring-cloud-starter-netflix-ribbon"
+	implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+	implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-spring:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-java8:$cucumberVersion"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "org.springframework.cloud:spring-cloud-stream-test-support"
+
+	testCompile("org.assertj:assertj-core:3.12.2")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProfile name="local,unit-test">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+
+    <springProfile name="test,staging,production">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <fieldNames>
+                    <message>log</message>
+                    <timestamp>[ignore]</timestamp>
+                </fieldNames>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+</configuration>

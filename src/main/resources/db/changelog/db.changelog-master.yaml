@@ -1,0 +1,24 @@
+databaseChangeLog:
+
+ - changeSet:
+     id: 202001221543
+     author: henaldo.neto
+     changes:
+       - createTable:
+           tableName: nota
+           columns:
+             - column:
+                 name: access_key
+                 constraints:
+                   nullable: false
+                   primaryKey: true
+                 type: VARCHAR(44)
+             - column:
+                 name: valor
+                 type: NUMERIC(19,4)
+             - column:
+                 name: xml
+                 constraints:
+                   nullable: false
+                   primaryKey: false
+                 type: text

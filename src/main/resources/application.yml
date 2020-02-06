@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: nota-service
+  liquibase:
+    enabled: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/nota_service
+    username: nota_service
+    password: nota_service
+    hikari:
+      connection-init-sql: set role nota_service
+      driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: validate
+    properties:
+      jadira.usertype:
+        currencyCode: BRL
+      hibernate:
+        format_sql: false
+        jdbc.lob.non_contextual_creation: true
+    show-sql: false
+
+api:
+  sandbox-api: https://sandbox-api.arquivei.com.br
+
+logging:
+  level:
+    root: WARN
+    br.com.arquivei: INFO

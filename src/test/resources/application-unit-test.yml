@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/nota_service
+    username: nota_service
+    password: nota_service
+    hikari:
+      connection-init-sql: set role nota_service
+      driver-class-name: org.postgresql.Driver
+  liquibase:
+    contexts: unit-test
